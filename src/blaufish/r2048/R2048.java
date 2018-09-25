@@ -26,13 +26,13 @@ public class R2048 {
 				m = firstMove();
 				tuple.m = m;
 			} else {
-				if (isLastMove(m)) {
+				if (Move.isLastMove(m)) {
 					if (list.size() == 1)
 						return; //no more recursion
 					list.remove(list.size() - 1);
 					continue recurse;
 				}
-				m = nextMove(m);
+				m = Move.nextMove(m);
 				tuple.m = m;
 			}
 			C2048 cc;
@@ -52,18 +52,6 @@ public class R2048 {
 		return MOVE_VALUES[0];
 	}
 
-	private static Move nextMove(Move m) {
-		for (int i = MOVE_VALUES.length - 1; i >= 0; i--)
-			if (m == MOVE_VALUES[i])
-				m = MOVE_VALUES[i + 1];
-		return m;
-	}
-
-
-	private static boolean isLastMove(Move m) {
-		return m == MOVE_VALUES[MOVE_VALUES.length - 1];
-	}
-	
 	static class T {
 		public T(C2048 board, Move m) {
 			super();
